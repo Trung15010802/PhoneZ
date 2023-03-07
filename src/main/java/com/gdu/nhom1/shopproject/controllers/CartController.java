@@ -97,10 +97,11 @@ public class CartController {
     }
 
     @GetMapping("/cart/removeItem/{index}")
-    public String cartItemRemove(@PathVariable int index, HttpSession session) {
+    public String cartItemRemove(@PathVariable int index, HttpSession session, Model model) {
         cart = (List<Product>) session.getAttribute("cart");
         if (cart != null && index >= 0 && index < cart.size()) {
             cart.remove(index);
+            session.setAttribute("cartCount", cart.size());
         }
         return "redirect:/cart";
     }
