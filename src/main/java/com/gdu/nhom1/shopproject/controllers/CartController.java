@@ -32,19 +32,6 @@ public class CartController {
 
     private List<Product> cart;
 
-    // @GetMapping("/addToCart/{id}")
-    // public String addToCart(@PathVariable long id, HttpSession session) {
-    //     Product product = productService.getProductById(id).get();
-    //      cart =  (List<Product>) session.getAttribute("cart");
-    //     if (cart == null) {
-    //         cart = new ArrayList<>();
-    //         session.setAttribute("cart", cart);
-    //     }
-    //     cart.add(product);
-    //     session.setAttribute("cartCount", cart.size());
-    //     return "redirect:/shop";
-    // }
-
     @PostMapping("/addToCart")
     public String addToCart(@RequestParam("productId") int productId,
             @RequestParam("quantity") int quantity, HttpSession session,
@@ -60,10 +47,10 @@ public class CartController {
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getId() == productId) {
                 cart.get(i).setQuantity(quantity + cart.get(i).getQuantity());
-                current ++;
+                current++;
             }
         }
-        if(current == cart.size()){ 
+        if (current == cart.size()) {
             cart.add(product);
         }
         session.setAttribute("cartCount", cart.size());
@@ -76,10 +63,10 @@ public class CartController {
             @RequestParam("quantity") int quantity, HttpSession session,
             Model model) {
         Product product = productService.getProductById(productId).get();
-        
+
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getId() == productId) {
-                if (quantity <= 0) { //quantity == 0
+                if (quantity <= 0) { // quantity == 0
                     cart.remove(i);
                 } else if (quantity > 0 && product.getQuantity() > quantity) {
                     cart.get(i).setQuantity(quantity);
@@ -146,36 +133,34 @@ public class CartController {
             long id = cart.get(i).getId();
             Product product = productService.getProductById(id).get();
             productList.add(product);
-            
+
             totalMoney += cart.get(i).getPrice();
         }
         // for (String productName : billDTO.getProduct_name()) {
-        //     Product product = productService.get;
-        //     if (product != null) {
-        //         productList.add(product);
-        //         totalMoney += product.getPrice();
-        //     }
+        // Product product = productService.get;
+        // if (product != null) {
+        // productList.add(product);
+        // totalMoney += product.getPrice();
+        // }
         // }
         // List<Product> productList = new ArrayList<>();
         // for (String productName : billDTO.getProduct_name()) {
-        //     Product product = productService.getProductByName(productName);
-        //     if (product != null) {
-        //         productList.add(product);
-        //         totalMoney += product.getPrice();
-        //     }
+        // Product product = productService.getProductByName(productName);
+        // if (product != null) {
+        // productList.add(product);
+        // totalMoney += product.getPrice();
+        // }
         // }
         // bill.setProducts(productList);
-        
+
         bill.setProducts(productList);
         bill.setPrice(totalMoney);
         billServece.addBill(bill);
         cart.clear();
         model.addAttribute("result", bill.getId());
         model.addAttribute("parameters", productList);
-        
+
         return "/orderPlaced";
     }
 
-
-    
 }
