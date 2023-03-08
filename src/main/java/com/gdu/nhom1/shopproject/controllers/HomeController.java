@@ -38,16 +38,17 @@ public class HomeController {
     }
 
     @GetMapping("/shop/category/{id}")
-    public String shopByCategory(Model model, @PathVariable int id) {
+    public String shopByCategory(Model model, @PathVariable int id, HttpSession session) {
         model.addAttribute("categories", categoryService.getAllCategory());
         model.addAttribute("products", productService.getAllProductsByCategoryId(id));
-
+        session.setAttribute("session", session);
         return "shop";
     }
 
     @GetMapping("/shop/viewproduct/{id}")
-    public String viewProductDetail(Model model, @PathVariable int id) {
+    public String viewProductDetail(Model model, @PathVariable int id, HttpSession session) {
         model.addAttribute("product", productService.getProductById(id).get());
+        session.setAttribute("session", session);
 
         return "viewProduct";
 

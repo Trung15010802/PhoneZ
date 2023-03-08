@@ -61,8 +61,6 @@ public class CartController {
             cart.add(product2);
         }
         session.setAttribute("cartCount", cart.size());
-        // model.addAttribute("total",
-        // cart.stream().mapToDouble(Product::getPrice).sum());
         session.setAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
         return "redirect:/shop";
     }
