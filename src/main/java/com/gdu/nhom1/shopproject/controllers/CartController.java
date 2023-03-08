@@ -37,8 +37,6 @@ public class CartController {
             @RequestParam("quantity") int quantity, HttpSession session,
             Model model) {
         Product product = productService.getProductById(productId).get();
-        product.setQuantity(quantity);
-        product.setPrice(quantity * product.getPrice());
         if (cart == null) {
             cart = new ArrayList<>();
             session.setAttribute("cart", cart);
@@ -47,14 +45,24 @@ public class CartController {
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getId() == productId) {
                 cart.get(i).setQuantity(quantity + cart.get(i).getQuantity());
+                cart.get(i).setPrice(cart.get(i).getQuantity() * product.getPrice());
                 current++;
             }
         }
         if (current == cart.size()) {
-            cart.add(product);
+            Product product2 = new Product();
+            product2.setId(productId);
+            product2.setName(product.getName());
+            product2.setCategory(product.getCategory());
+            product2.setPrice(product.getPrice() * quantity);
+            product2.setDescription(product.getDescription());
+            product2.setQuantity(quantity);
+            product2.setImageName(product.getImageName());
+            cart.add(product2);
         }
         session.setAttribute("cartCount", cart.size());
-
+        // model.addAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
+        session.setAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
         return "redirect:/shop";
     }
 
@@ -63,6 +71,7 @@ public class CartController {
             @RequestParam("quantity") int quantity, HttpSession session,
             Model model) {
         Product product = productService.getProductById(productId).get();
+
 
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getId() == productId) {
@@ -124,6 +133,7 @@ public class CartController {
         bill.setFirstName(billDTO.getFirstName());
         bill.setLastName(billDTO.getLastName());
         bill.setAddress(billDTO.getAddress());
+        bill.setTown_city(billDTO.getTown_city());
         bill.setPhoneNumber(billDTO.getPhoneNumber());
         bill.setEmail(billDTO.getEmail());
         bill.setAddInformation(billDTO.getAddInformation());
@@ -133,34 +143,25 @@ public class CartController {
         for (int i = 0; i < cart.size(); i++) {
             long id = cart.get(i).getId();
             Product product = productService.getProductById(id).get();
-            productList.add(product);
-
+            product.setQuantity(product.getQuantity() - cart.get(i).getQuantity());
+            Product product2 = new Product();
+            product2.setQuantity(cart.get(i).getQuantity());
+            product2.setPrice(cart.get(i).getPrice());
+            productList.add(product2);
+            
             totalMoney += cart.get(i).getPrice();
         }
-        // for (String productName : billDTO.getProduct_name()) {
-        // Product product = productService.get;
-        // if (product != null) {
-        // productList.add(product);
-        // totalMoney += product.getPrice();
-        // }
-        // }
-        // List<Product> productList = new ArrayList<>();
-        // for (String productName : billDTO.getProduct_name()) {
-        // Product product = productService.getProductByName(productName);
-        // if (product != null) {
-        // productList.add(product);
-        // totalMoney += product.getPrice();
-        // }
-        // }
-        // bill.setProducts(productList);
-
-        bill.setProducts(productList);
+        
         bill.setPrice(totalMoney);
         billServece.addBill(bill);
-        cart.clear();
-        model.addAttribute("result", bill.getId());
-        model.addAttribute("parameters", productList);
 
+        model.addAttribute("bill", bill);
+        model.addAttribute("result", bill.getId());
+        model.addAttribute("productList", productList);
+        model.addAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
+        
+        cart.clear();
+        session.setAttribute("cartCount", cart.size());
         return "/orderPlaced";
     }
 

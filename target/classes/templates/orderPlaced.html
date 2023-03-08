@@ -76,12 +76,41 @@
                     </tr>
                     </thead>
                     <tbody>
-
-                    <tr th:each="entry : ${parameters}">
-
-                        <td th:text="${entry.id} + '  : -  ' + ${entry.name}"></td>
-
+                    <tr>
+                        <td>Name:</td>
+                        <td th:text="${bill.firstName} + ' ' + ${bill.lastName}"></td>
                     </tr>
+                    <tr>
+                        <td>Adress:</td>
+                        <td th:text="${bill.address} + ', ' + ${bill.town_city}"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td th:text="${bill.phoneNumber}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td th:text="${bill.email}">Email:</td>
+                    </tr>
+                    <tr>
+                        <td>Information:</td>
+                        <td th:text="${bill.addInformation}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product information:</td>
+                    </tr>
+                    <tr th:each="entry, iStat : ${productList}">
+                        <td th:text="${entry.name}"></td>
+                        <td th:text="${entry.quantity}"></td>
+                        <td th:text="${#numbers.formatDecimal(entry.price, 0, 'COMMA', 2, 'POINT')}"></td>
+                    </tr>
+                    <tr>
+                        <td>total payment:</td>
+                        <td>
+                            <strong>₹<span th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT')}"></span></strong>
+                        </td>
+                    </tr>
+                    
                     </tbody>
                 </table>
             </div>
