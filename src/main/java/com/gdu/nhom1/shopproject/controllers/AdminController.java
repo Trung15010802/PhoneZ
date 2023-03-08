@@ -1,5 +1,7 @@
 package com.gdu.nhom1.shopproject.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,11 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.gdu.nhom1.shopproject.dto.ProductDTO;
 import com.gdu.nhom1.shopproject.models.Category;
 import com.gdu.nhom1.shopproject.models.Product;
+import com.gdu.nhom1.shopproject.models.User;
 import com.gdu.nhom1.shopproject.services.CategoryService;
 import com.gdu.nhom1.shopproject.services.ProductService;
+import com.gdu.nhom1.shopproject.services.UserService;
 
 @Controller
 public class AdminController {  
@@ -22,6 +28,9 @@ public class AdminController {
 
     @Autowired // Tiêm phụ thuộc ProductService
     ProductService productService;
+
+    @Autowired // Tiêm phụ thuộc ProductService
+    UserService userService;
 
     // Đăng ký xử lý http GET
     // GetMapping mapping the route '/admin' to the following controller
@@ -118,5 +127,29 @@ public class AdminController {
     public String viewProduct(@PathVariable long id,Model model) {
         model.addAttribute("product", productService.getProductById(id).get());
         return "viewProductAdmin";
+    }
+
+    @GetMapping("/products/search")
+    public String searchProduct(@RequestParam String keyword, Model model) {
+        List<Product> results = productService.search(keyword);
+        model.addAttribute("products", results);
+
+        return "products";
+    }
+
+    @GetMapping("/categories/search")
+    public String searchCategory(@RequestParam String keyword, Model model) {
+        List<Category> results = categoryService.search(keyword);
+        model.addAttribute("categories", results);
+
+        return "categories";
+    }
+
+    @GetMapping("/admin/users/search")
+    public String searchUser(@RequestParam String keyword, Model model) {
+        List<User> results = userService.search(keyword);
+        model.addAttribute("users", results);
+
+        return "users";
     }
 }

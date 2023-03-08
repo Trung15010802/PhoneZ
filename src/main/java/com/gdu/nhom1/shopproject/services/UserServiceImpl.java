@@ -83,6 +83,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public List<User> search(String keyword) {
+        return userRepository.findByEmailContainingIgnoreCase(keyword);
+    }
+
 
 
 

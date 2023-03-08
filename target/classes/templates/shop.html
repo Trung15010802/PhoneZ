@@ -94,8 +94,8 @@
                                 <p th:text="${product.description}">Suresh Dasari is a founder and technical lead
                                     developer in tutlane.</p>
                                 <form th:action="@{/addToCart(productId=${product.id})}" method="post">
-                                    <input type="number" name="quantity" value="1" min="0" th:attr="max=${product.quantity}" >
-                                    <label for="" th:text="${product.quantity}"></label>
+                                    <input type="number" name="quantity" value="1" min="0"
+                                        th:attr="max=${product.quantity}">
                                     <button type="submit">Add to cart</button>
                                 </form>
                                 <a href="#" th:href="@{/shop/viewproduct/{id}(id=${product.id})}"

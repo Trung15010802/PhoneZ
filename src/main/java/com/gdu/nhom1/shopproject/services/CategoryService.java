@@ -29,4 +29,8 @@ public class CategoryService {
     public Optional<Category> getCategoryById(int id) {
         return categoryRepository.findById(id);
     }
+
+    public List<Category> search(String keyword) {
+        return categoryRepository.findByNameContainingIgnoreCase(keyword);
+    }
 }

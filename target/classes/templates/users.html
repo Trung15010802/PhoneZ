@@ -40,14 +40,20 @@
         </div>
     </nav>
     <div class="container-fluid">
-
+        <div class="search justify-content-center">
+            <form class="row no-gutters justify-content-center" action="/admin/users/search" method="get">
+                <input class="col-sm-7 d-flex justify-content-center" type="text" name="keyword" th:value="${keyword}"
+                    placeholder="Nhập từ khóa...">
+                <button class="col-sm-2 d-flex justify-content-center" name="query" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
         <a th:href="@{/admin/users/add}" style="margin: 20px 0" class="btn btn-primary">Add User</a>
         <table class="table">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">SN</th>
                     <th scope="col">User Name</th>
-                 
+
                     <th scope="col">Delete</th>
                     <th scope="col">Update</th>
                 </tr>
@@ -57,7 +63,7 @@
                 <tr th:each="user, iStat : ${users}">
                     <th scope="row" th:text="${iStat.index + 1}">1</th>
                     <td th:text="${user.email}">Larry</td>
-               
+
                     <td><a href="" th:href="@{/admin/users/delete/{id}(id=${user.id})}"
                             class="btn btn-danger">Delete</a></td>
                     <td><a href="" th:href="@{/admin/users/update/{id}(id=${user.id})}"
