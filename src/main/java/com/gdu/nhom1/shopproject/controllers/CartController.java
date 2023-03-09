@@ -78,13 +78,13 @@ public class CartController {
         Product product = productService.getProductById(productId).get();
 
         int totalQuantity = 0;
-        
+
         for (Product p : productService.getAllProduct()) {
             if (p.getId() == productId) {
                 totalQuantity = p.getQuantity();
             }
         }
-        
+
         model.addAttribute("totalQuantity", totalQuantity);
 
         for (int i = 0; i < cart.size(); i++) {
@@ -142,12 +142,12 @@ public class CartController {
     @GetMapping("/checkout")
     public String checkout(Model model, HttpSession session) {
         session.getAttribute("userId");
-        
+
         cart = (List<Product>) session.getAttribute("cart");
         if (cart == null || cart.isEmpty()) {
             return "redirect:/cart";
         }
-        
+
         model.addAttribute("billDTO", new BillDTO());
         model.addAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
         model.addAttribute("users", userService.findALL());
@@ -186,7 +186,7 @@ public class CartController {
             product2.setPrice(cart.get(i).getPrice());
             productList.add(product2);
 
-            productName.add(product.getName() + " x " + cart.get(i).getQuantity());  
+            productName.add(product.getName() + " x " + cart.get(i).getQuantity());
 
             totalMoney += cart.get(i).getPrice();
         }

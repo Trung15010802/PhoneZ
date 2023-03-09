@@ -2,7 +2,6 @@ package com.gdu.nhom1.shopproject.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -39,5 +38,3 @@ public class Bill {
     private double price;
 
 }
-
-

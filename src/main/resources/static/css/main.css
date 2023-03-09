@@ -892,9 +892,24 @@ button:focus {
 
 
 /* Admin page */
+
+.menu_bar_admin-Home {
+  right: 2%;
+  position: fixed;
+  top: 10%;
+  width: 8%;
+}
+
 .menu_bar_Admin_Home i {
   font-size: 30px;
   color: white;
+}
+
+.btn_admin_page {
+  padding-top: 13px;
+  width: 97px !important;
+  height: 47px !important;
+  font-size: 13px;
 }
 
 .admin_page-background {
@@ -931,6 +946,7 @@ button:focus {
 
 .Admin_Home-frame_container {
   margin-left: 15%;
+  margin-top: -4%;
 }
 
 .admin_page-frame {
@@ -945,10 +961,12 @@ button:focus {
 
 .admin_page-frame h4 {
   font-weight: 600;
+  font-size: 23px;
 }
 
 .admin_page-frame p {
   font-weight: 100;
+  font-size: 17px;
 }
 
 .admin_page-frame {
@@ -1436,6 +1454,7 @@ button:not(:disabled),
   width: 18%;
 }
 
+
 .categories_page_container {
   background: rgba(0, 0, 0, 0.76);
   backdrop-filter: blur(6px);
@@ -1444,10 +1463,16 @@ button:not(:disabled),
   backdrop-filter: blur(6px);
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  font-size: 13px;
+  margin-top: -3%;
+}
 
+.categories_page_table tbody tr {
+  font-size: 15px;
 }
 
 .categories_page_table {
+  text-align: center;
   color: white;
 }
 
@@ -1462,12 +1487,111 @@ button:not(:disabled),
 .categories_page-btn_danger {
   background-color: #094ba1;
   border: 1px solid #094ba1;
+  background-color: #094ba1;
+  border: 1px solid #094ba1;
+  width: 40%;
+  font-size: 14px;
+  border-radius: 21px;
 }
 
 .categories_page-btn_warning {
   background-color: #094ba1;
   border: 1px solid #094ba1;
   color: whitesmoke;
+  background-color: #094ba1;
+  border: 1px solid #094ba1;
+  width: 40%;
+  font-size: 14px;
+  border-radius: 21px;
+}
+
+.categories_Page_Btn_add_category {
+  width: 12%;
+  height: 20% !important;
+  padding: 12px;
+}
+
+
+.categories_Page_Btn_add_category {
+  min-width: 157px;
+  min-height: 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+
+.categories_Page_Btn_add_category::before {
+  content: '';
+  border-radius: 1000px;
+  min-width: calc(150px + 12px);
+  min-height: calc(33px + 12px);
+  border: 3px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0, 255, 203, .64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.categories_Page_Btn_add_category:hover,
+.categories_Page_Btn_add_category:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+.categories_Page_Btn_add_category:hover::before,
+.categories_Page_Btn_add_category:focus::before {
+  opacity: 1;
+}
+
+.categories_Page_Btn_add_category::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 3px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+  z-index: 2;
+}
+
+.categories_Page_Btn_add_category:hover::after,
+.categories_Page_Btn_add_category:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
 }
 
 /* Categories add page */
@@ -1590,13 +1714,17 @@ button:not(:disabled),
 }
 
 /* Product */
+.product_page-Talbe {
+  text-align: center;
+}
+
 .product_container {
   background: rgba(0, 0, 0, 0.72);
   height: 100%;
   border-radius: 19px;
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
-  font-size: 12px;
-  margin-top: -18%;
+  font-size: 15px;
+  margin-top: -3%;
   top: 20% !important;
   backdrop-filter: blur(6px);
 
@@ -1618,10 +1746,101 @@ button:not(:disabled),
 
 .product_container tbody tr th {
   color: whitesmoke;
+  font-size: 15px;
 }
 
 .product_container tbody tr td {
   color: whitesmoke;
+  font-size: 18px;
+}
+
+.product_page-btn_add_Product {
+  height: 4% !important;
+  width: 14%;
+  padding: 15px !important;
+}
+
+
+.product_page-btn_add_Product {
+  min-width: 157px;
+  min-height: 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+
+.product_page-btn_add_Product::before {
+  content: '';
+  border-radius: 1000px;
+  min-width: calc(150px + 12px);
+  min-height: calc(33px + 12px);
+  border: 3px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0, 255, 203, .64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.product_page-btn_add_Product:hover,
+.product_page-btn_add_Product:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+.product_page-btn_add_Product:hover::before,
+.product_page-btn_add_Product:focus::before {
+  opacity: 1;
+}
+
+.product_page-btn_add_Product::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 3px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+  z-index: 2;
+}
+
+.product_page-btn_add_Product:hover::after,
+.product_page-btn_add_Product:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
 }
 
 /* Product add */
@@ -1726,7 +1945,11 @@ button:not(:disabled),
   border-radius: 15px;
 }
 
-
+/* User page*/
+.user_page_tbody {
+  font-size: 15px;
+  text-align: center;
+}
 
 
 /* User add page */
