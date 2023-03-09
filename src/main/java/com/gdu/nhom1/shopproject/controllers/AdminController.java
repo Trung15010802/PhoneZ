@@ -115,7 +115,6 @@ public class AdminController {
         productDTO.setCategoryId(product.getCategory().getId());
         productDTO.setPrice(product.getPrice());
         productDTO.setQuantity(product.getQuantity());
-        // productDTO.setWeight(product.getWeight());
         productDTO.setDescription(product.getDescription());
         productDTO.setImageName(product.getImageName());
         model.addAttribute("categories", categoryService.getAllCategory());

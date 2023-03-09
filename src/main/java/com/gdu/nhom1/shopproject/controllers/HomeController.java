@@ -5,16 +5,19 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// import com.gdu.nhom1.shopproject.global.GlobalData;
 import com.gdu.nhom1.shopproject.models.Product;
+import com.gdu.nhom1.shopproject.models.User;
 import com.gdu.nhom1.shopproject.services.CategoryService;
 import com.gdu.nhom1.shopproject.services.ProductService;
+import com.gdu.nhom1.shopproject.services.UserService;
 
 @Controller
 public class HomeController {
@@ -23,9 +26,30 @@ public class HomeController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping({ "/", "/home" })
-    public String home(Model model, HttpSession session) {
+    public String home(Model model, HttpSession session, Authentication authentication) {
         session.setAttribute("session", session);
+        String email = "";
+        try {
+            Object principal = authentication.getPrincipal();
+            if(authentication != null){}
+            if (principal instanceof UserDetails) {
+                email = ((UserDetails) principal).getUsername();
+            } else {
+                email = principal.toString();
+            }
+            // Lấy thông tin user từ database hoặc service
+            User user = userService.findByEmail(email);
+            // Thực hiện các thao tác với thông tin người dùng
+            System.out.println(user.getEmail());
+            session.setAttribute("email", user.getEmail());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    
         return "index";
     }
 

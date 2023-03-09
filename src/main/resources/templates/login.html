@@ -10,78 +10,105 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- <link rel="stylesheet" href="./assets/bootstraps/bootstrap.css"> -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
     <title>Document</title>
 </head>
 
 <body>
+    <div class="container form_login form_login_container" id="container">
+        <div class="form-container sign-up-container">
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <h1>Tạo tài khoản</h1>
+                <div class="form-group sign-in-form-group">
+                    <input type="text" name="firstName" id="firstName" required placeholder="tên"
+                        class="form-control form-control-lg">
+                </div>
+                <div class="form-group sign-in-form-group">
+                    <input type="text" name="lastName" id="lastName" required placeholder="họ"
+                        class="form-control form-control-lg">
+                </div>
+                <div class="form-group sign-in-form-group">
+                    <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email"
+                        name="email" id="email" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                        anyone else.</small>
+                </div>
+                <div class="form-group sign-in-form-group">
+                    <input type="password" class="form-control form-control-lg" required placeholder="Password"
+                        name="password" id="password">
+                </div>
 
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40"
-                    class="d-inline-block align-top" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto"></ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/}" href="#">home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/shop}" href="#">shop</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#" th:href="@{/register}">Sign Up</a>
-                    </li>
-
-                </ul>
-
-            </div>
+                <input type="submit" id="register" value="Đăng kí" class="btn btn-primary btn-block sign-in-form-group">
+            
+            </form>
         </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h2>Login</h2>
-                <p>Please fill out this to login</p>
-                <form th:action="@{/login}" method="post">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="username" id="username" placeholder="Your Email"
-                            class="form-control form-control-lg">
-                    </div>
+        <div class="form-container sign-in-container">
+            <form th:action="@{/login}" method="post" >
+                <h1>Đăng Nhập</h1>
+                <div class="login_form-group">
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" name="username" />
+                </div>
+                <div class="login_form-group">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="password"
+                        id="password">
+                </div>
+                <div th:if="${param.error}" class="alert alert-error text-danger">
+                    Invalid username or password.
+                </div>
+                <input type="submit" id="login" value="Đăng nhập"
+                    class="btn btn-primary btn-block form_login-btn_login">
+            </form>
+            <br>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control form-control-lg" placeholder="Password"
-                            name="password" id="password">
-                    </div>
-                    <div th:if="${param.error}" class="alert alert-error text-danger">
-                        Invalid username or password.
-                    </div>
-
-                    <input type="submit" value="Login" class="btn btn-primary btn-block">
-                    <br>
-                    <span>Don't have an account <a class="linkControl" href="./register.html"
-                            th:href="@{/register}">Register here</a></span>
-                    <br>
-                    <a href="" th:href="@{/forgotpassword}">Forgot password ?</a>
-                </form>
-                <br>
-
-
+        </div>
+        <div class="overlay-container">
+            <div class="overlay overlay_Login_Form">
+                <div class="overlay-panel overlay-left">
+                    <h1>Chào mừng , trở lại!</h1>
+                    <p>Để giữ kết nối với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
+                    <button class="ghost btn_ghost_login" id="signIn">Đăng Nhập</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Xin Chào!</h1>
+                    <p>Nhập thông tin cá nhân của bạn</p>
+                    <button class="ghost btn_ghost_login" id="signUp">Đăng Kí</button>
+                </div>
             </div>
-
         </div>
     </div>
+    <div></div>
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
 
- 
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    </main>
+    <button id="back-to-top-btn">Back to top</button>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v16.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -92,6 +119,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "109562825145260");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
 </body>
 
 </html>

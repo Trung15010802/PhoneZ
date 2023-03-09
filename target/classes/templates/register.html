@@ -10,6 +10,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/register.css">
     <title>Document</title>
 </head>
 
@@ -45,47 +46,33 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="col-sm-6">
-            <h3 style="margin-top: 10px">Sign Up Now</h3>
-            <p>Please fill out this to register</p>
-            <form th:action="@{/register}" th:object="${user}" method="post">
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" required placeholder="Your Firstname"
-                        class="form-control form-control-lg">
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" required placeholder="Your Lastname"
-                        class="form-control form-control-lg">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email"
-                        name="email" id="email" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                        anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control form-control-lg" required placeholder="Password"
-                        name="password" id="password">
-                </div>
+    <div class="container justify-content-center">
+        <div class="col-sm-6 ">
 
-                <input type="submit" value="Register" class="btn btn-primary btn-block">
+            <h3>Some thing went wrong!</h3>
+
+            <div th:if="${param.success}">
+                <div class="alert alert-success" role="alert">Đăng ký tài khoản thành công!</div>
+            </div>
+            <div th:if="${param.error}">
+                <div class="alert alert-error text-danger">Tài khoản đã tồn tại. Vui lòng đăng ký lại với tài khoản
+                    khác.</div>
+            </div>
+
+            <a href="login.html">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor"
+                            d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z">
+                        </path>
+                    </svg>
+                    <span>Login</span>
+
+                </button>
+            </a>
 
 
-                <div th:if="${param.success}">
-                    <div class="alert alert-success" role="alert">Đăng ký tài khoản thành công!</div>
-                </div>
-                <div th:if="${param.error}">
-                    <div class="alert alert-error text-danger">Tài khoản đã tồn tại. Vui lòng đăng ký lại với tài khoản
-                        khác.</div>
-                </div>
-                <span style="margin-top: 10px">Already have an account <a class="linkControl" href="./login.html"
-                        th:href="@{/login}">Login here</a></span>
-            </form>
         </div>
     </div>
 
