@@ -7,8 +7,9 @@ import lombok.Data;
 @Data
 public class BillDTO {
     private long id;
-    private List<String> product_name;
-    private long user_id;
+    // private List<String> product_name;
+    private List<String> productName;
+    private long userId;
     private String firstName;
     private String lastName;
     private String address;

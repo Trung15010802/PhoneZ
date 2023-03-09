@@ -20,6 +20,7 @@ import com.gdu.nhom1.shopproject.models.Bill;
 import com.gdu.nhom1.shopproject.models.Product;
 import com.gdu.nhom1.shopproject.services.BillServece;
 import com.gdu.nhom1.shopproject.services.ProductService;
+import com.gdu.nhom1.shopproject.services.UserService;
 
 @Controller
 @SessionAttributes("cart")
@@ -29,6 +30,9 @@ public class CartController {
 
     @Autowired
     BillServece billServece;
+
+    @Autowired
+    UserService userService;
 
     private List<Product> cart;
 
@@ -61,6 +65,8 @@ public class CartController {
             cart.add(product2);
         }
         session.setAttribute("cartCount", cart.size());
+        // model.addAttribute("total",
+        // cart.stream().mapToDouble(Product::getPrice).sum());
         session.setAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
         return "redirect:/shop";
     }
@@ -135,12 +141,16 @@ public class CartController {
 
     @GetMapping("/checkout")
     public String checkout(Model model, HttpSession session) {
+        session.getAttribute("userId");
+        
         cart = (List<Product>) session.getAttribute("cart");
         if (cart == null || cart.isEmpty()) {
             return "redirect:/cart";
         }
+        
         model.addAttribute("billDTO", new BillDTO());
         model.addAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
+        model.addAttribute("users", userService.findALL());
         return "/checkout";
     }
 
@@ -148,27 +158,40 @@ public class CartController {
     public String payNow(@ModelAttribute("billDTO") BillDTO billDTO, Model model, HttpSession session) {
         Bill bill = new Bill();
         bill.setId(billDTO.getId());
+        // bill.setUser(userService.getUserById(billDTO.getUserId()).get());
         bill.setFirstName(billDTO.getFirstName());
         bill.setLastName(billDTO.getLastName());
         bill.setAddress(billDTO.getAddress());
         bill.setTown_city(billDTO.getTown_city());
         bill.setPhoneNumber(billDTO.getPhoneNumber());
         bill.setEmail(billDTO.getEmail());
+        bill.setUser(userService.getUserById(billDTO.getUserId()).get());
+        System.out.println("\n" + billDTO.getUserId() + "\n");
+
         bill.setAddInformation(billDTO.getAddInformation());
 
         double totalMoney = 0;
+
         List<Product> productList = new ArrayList<Product>();
+
+        List<String> productName = new ArrayList<String>();
         for (int i = 0; i < cart.size(); i++) {
             long id = cart.get(i).getId();
             Product product = productService.getProductById(id).get();
             product.setQuantity(product.getQuantity() - cart.get(i).getQuantity());
+
             Product product2 = new Product();
+            product2.setName(cart.get(i).getName());
             product2.setQuantity(cart.get(i).getQuantity());
             product2.setPrice(cart.get(i).getPrice());
             productList.add(product2);
 
+            productName.add(product.getName() + " x " + cart.get(i).getQuantity());  
+
             totalMoney += cart.get(i).getPrice();
         }
+
+        bill.setProductName(productName);
 
         bill.setPrice(totalMoney);
         billServece.addBill(bill);
@@ -176,7 +199,9 @@ public class CartController {
         model.addAttribute("bill", bill);
         model.addAttribute("result", bill.getId());
         model.addAttribute("productList", productList);
+        model.addAttribute("productName", productName);
         model.addAttribute("total", cart.stream().mapToDouble(Product::getPrice).sum());
+        model.addAttribute("products", productService.getAllProduct());
 
         cart.clear();
         session.setAttribute("cartCount", cart.size());

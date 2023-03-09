@@ -46,6 +46,7 @@ public class HomeController {
             // Thực hiện các thao tác với thông tin người dùng
             System.out.println(user.getEmail());
             session.setAttribute("email", user.getEmail());
+            session.setAttribute("userId", user.getId());
         } catch (Exception e) {
             System.out.println(e.toString());
         }

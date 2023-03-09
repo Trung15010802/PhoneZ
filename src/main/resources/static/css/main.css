@@ -1811,6 +1811,7 @@ button:not(:disabled),
 /* User page */
 
 .user_page_container {
+  font-size: 16px;
   color: white;
   margin-top: 14%;
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
@@ -1829,5 +1830,90 @@ button:not(:disabled),
 }
 
 .user_page_btn {
-  width: 5%;
+  width: 12%;
+  height: 20% !important;
+  padding: 12px;
+}
+
+
+.user_page_btn {
+  min-width: 157px;
+  min-height: 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+}
+
+.user_page_btn::before {
+  content: '';
+  border-radius: 1000px;
+  min-width: calc(150px + 12px);
+  min-height: calc(33px + 12px);
+  border: 3px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0, 255, 203, .64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.user_page_btn:hover,
+.user_page_btn:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+.user_page_btn:hover::before,
+.user_page_btn:focus::before {
+  opacity: 1;
+}
+
+.user_page_btn::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 3px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+  z-index: 2;
+}
+
+.user_page_btn:hover::after,
+.user_page_btn:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
 }
