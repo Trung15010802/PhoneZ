@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.gdu.nhom1.shopproject.dto.BillDTO;
 import com.gdu.nhom1.shopproject.models.Bill;
 import com.gdu.nhom1.shopproject.models.Product;
-import com.gdu.nhom1.shopproject.services.BillServece;
+import com.gdu.nhom1.shopproject.services.BillService;
 import com.gdu.nhom1.shopproject.services.ProductService;
 import com.gdu.nhom1.shopproject.services.UserService;
 
@@ -29,7 +29,7 @@ public class CartController {
     ProductService productService;
 
     @Autowired
-    BillServece billServece;
+    BillService billServece;
 
     @Autowired
     UserService userService;

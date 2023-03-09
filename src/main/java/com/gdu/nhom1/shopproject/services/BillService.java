@@ -10,7 +10,7 @@ import com.gdu.nhom1.shopproject.models.Bill;
 import com.gdu.nhom1.shopproject.repository.BillRepository;
 
 @Service
-public class BillServece {
+public class BillService {
     @Autowired
     BillRepository billRepository;
 
@@ -28,5 +28,9 @@ public class BillServece {
 
     public Optional<Bill> getBillById(long id) {
         return billRepository.findById(id);
+    }
+
+    public List<Bill> search(String keyword) {
+        return billRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrPhoneNumberContainingIgnoreCase(keyword, keyword, keyword, keyword);
     }
 }

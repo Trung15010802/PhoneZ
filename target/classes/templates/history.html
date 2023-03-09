@@ -49,66 +49,53 @@
                     <li class="nav-item active">
                         <span class="nav-link" th:text="${#session.getAttribute('cartCount')}">0</span>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/bills/history/{id}(id=${#session.getAttribute('userId')})}" href="#">history</a>
-                    </li>
                 </ul>
 
             </div>
         </div>
     </nav>
-    <div class="container" style="margin-top: 30px">
-        <div class="row">
-            <div class="col-sm-3">
-                <h4>Categories</h4>
-                <ul class="list-group">
-                    <a th:href="@{/shop}">
-                        <li class="list-group-item">All Products</li>
-                    </a>
-                    <a href="" th:each="category, iStat : ${categories}"
-                        th:href="@{/shop/category/{id}(id=${category.id})}">
-                        <li class="list-group-item" th:text="${category.name}"></li>
-                    </a>
-
-                </ul>
-            </div>
-            <div class="col-sm-9">
-                <div class="search justify-content-center">
-                    <form class="row no-gutters justify-content-center" action="/shop/search" method="get">
-                        <input class="col-sm-7 d-flex justify-content-center" type="text" name="keyword"
-                            th:value="${keyword}" placeholder="Nhập từ khóa...">
-                        <button class="col-sm-2 d-flex justify-content-center" name="query" type="submit">Tìm
-                            kiếm</button>
-                    </form>
-                </div>
-                <div class="card" style="margin-top: 20px" th:each="product : ${products}">
-                    <div class="row no-gutters">
-                        <div class="col-sm-5 d-flex justify-content-center">
-                            <img class="" height="150px" width="150px" th:src="@{${product.imageName}}"
-                                th:alt="${product.name}">
-                        </div>
-                        <div class="col-sm-7 d-flex justify-content-center">
-                            <div class="card-body">
-                                <a class="card-title" href="#" th:href="@{/shop/viewproduct/{id}(id=${product.id})}"
-                                    th:text="${product.name}"></a>
-                                <h4>₹ <span
-                                        th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"></span>
-                                </h4>
-                                <p th:text="${product.description}">Suresh Dasari is a founder and technical lead
-                                    developer in tutlane.</p>
-                                <form th:action="@{/addToCart(productId=${product.id})}" method="post">
-                                    <input type="number" name="quantity" value="1" min="0"
-                                        th:attr="max=${product.quantity}">
-                                    <button type="submit">Add to cart</button>
-                                </form>
-                                <a href="#" th:href="@{/shop/viewproduct/{id}(id=${product.id})}"
-                                    class="btn btn-primary">View Product</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid" style="margin-top: 30px">
+        <div class="search justify-content-center">
+            <form class="row no-gutters justify-content-center" action="/bills/search" method="get">
+                <input class="col-sm-7 d-flex justify-content-center" type="text" name="keyword" th:value="${keyword}"
+                    placeholder="Nhập từ khóa...">
+                <button class="col-sm-2 d-flex justify-content-center" name="query" type="submit">Tìm kiếm</button>
+            </form>
         </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">SN</th>
+                    <!--<th scope="col">Name</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Information</th>-->
+                    <th scope="col">Product's name</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="bill, iStat : ${bills}" th:if="${bill.user.id} == ${#session.getAttribute('userId')}">
+
+                    <th scope="row" th:text="${iStat.index + 1}">1</th>
+                    <!--    <td th:text="${bill.firstName} + ' ' + ${bill.lastName}"></a>
+                <td th:text="${bill.address} + ', ' + ${bill.town_city}">Larry</td>
+                <td th:text="${bill.email}">Larry</td>
+                <td th:text="${bill.phoneNumber}">Larry</td>
+                <td th:text="${bill.addInformation}">Larry</td> -->
+
+                    <td>
+                        <a class="nav-link" th:href="@{/bills/viewbill/{id}(id=${bill.id})}" href="#">
+                            <span th:each="product : ${bill.productName}" th:text="${product} + '; '"></span>
+                        </a>
+                    </td>
+                    <td th:text="${#numbers.formatDecimal(bill.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">Larry</td>
+
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 

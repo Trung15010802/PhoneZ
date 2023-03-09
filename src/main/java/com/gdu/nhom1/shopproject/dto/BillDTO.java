@@ -14,7 +14,7 @@ public class BillDTO {
     private String lastName;
     private String address;
     private String town_city;
-    private long phoneNumber;
+    private String phoneNumber;
     private String email;
     private String addInformation;
     private double price;
