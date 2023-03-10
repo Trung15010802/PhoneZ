@@ -75,7 +75,7 @@
 
         <a th:href="@{/admin/products/add}" style="margin: 20px 0"
             class="btn btn-primary product_page-btn_add_Product"><span>Add Product</span> </a>
-        <table class="table">
+        <table class="table product_page_table">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">SN</th>
@@ -90,11 +90,11 @@
             <tbody>
 
                 <tr th:each="product, iStat : ${products}">
-                    <th scope="row" th:text="${iStat.index + 1}">1</th>
-                    <td><a href="" th:href="@{/admin/viewproduct/{id}(id=${product.id})}" th:text="${product.name}"></a>
-                    <td th:text="${product.category.name}">Larry</td>
+                    <th class="product_page_item" scope="row" th:text="${iStat.index + 1}">1</th>
+                    <td  class="product_page_item"><a href="" th:href="@{/admin/viewproduct/{id}(id=${product.id})}" th:text="${product.name}"></a>
+                    <td  class="product_page_item" th:text="${product.category.name}">Larry</td>
                     <td><img src="" height="100px" width="100px" th:src="@{${product.imageName}}"></td>
-                    <td th:text="${product.quantity}">Larry</td>
+                    <td  class="product_page_item" th:text="${product.quantity}">Larry</td>
                     <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}"
                             class="btn btn-danger categories_page-btn_danger"><i class="fas fa-trash"></i></a></td>
                     <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}"

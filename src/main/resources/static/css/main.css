@@ -1805,8 +1805,18 @@ button:not(:disabled),
 }
 
 /* Product */
-.product_page-Talbe {
+.product_page-talbe {
   text-align: center;
+}
+.product_page_table tr td a{
+  color: white;
+}
+.product_page_table tbody tr{
+  padding-top: 10%;
+}
+.product_page_item
+{
+      padding-top: 3% !important;
 }
 
 .product_container {
@@ -2012,6 +2022,7 @@ button:not(:disabled),
   border-radius: 15px;
   padding-top: 5%;
   text-align: left;
+  font-size: 19px;
 }
 
 .form-group_Product_Add label {
@@ -2066,6 +2077,7 @@ button:not(:disabled),
 
 .form-group_Product_Add select {
   border-radius: 15px;
+  font-size: 15px;
 }
 
 /* User page*/
@@ -2325,4 +2337,16 @@ button:not(:disabled),
   position: relative;
   margin-top: -15%;
   margin-right: 35%;
+}
+.bills_page_table
+{
+  color: white;
+}
+.bills_page_table a
+{
+  color: white;
+}
+.bills_page_item
+{
+  padding-top: 2% !important;
 }
