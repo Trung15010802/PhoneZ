@@ -48,7 +48,7 @@
   font-size: 1.2rem;
 }
 
-.navbar-info-phonenumber {}
+
 
 .navbar-navigation__list {
   height: 100%;
@@ -141,15 +141,15 @@
 }
 
 
-.background-slider {}
+
 
 .background-slider-info {
   padding: 0;
 }
 
-.background-slider-info__list {}
 
-.slider-item {}
+
+
 
 .background-slider_image {
   width: 100%;
@@ -168,7 +168,6 @@
   left: 40px;
 }
 
-.slider-product {}
 
 .product-cover {
   margin: 0;
@@ -1099,6 +1098,7 @@ main .card {
 }
 
 .btn_cart_page {
+  width: 100%;
   min-width: 158px;
   min-height: 4px;
   font-family: 'Nunito', sans-serif;
