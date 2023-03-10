@@ -49,9 +49,6 @@
                     <li class="nav-item active">
                         <span class="nav-link" th:text="${#session.getAttribute('cartCount')}">0</span>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/bills/history/{id}(id=${#session.getAttribute('userId')})}" href="#">history</a>
-                    </li>
                 </ul>
 
             </div>
