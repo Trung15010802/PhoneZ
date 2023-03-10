@@ -1669,6 +1669,22 @@ button:not(:disabled),
   }
 }
 
+.categories_page_container-form {
+  position: absolute;
+}
+
+.categories_page_container-btn_s {
+  left: 77%;
+  width: 4% !important;
+  padding: initial;
+  position: fixed;
+  background: none;
+  border: none;
+  color: #423f3f;
+  font-size: 15px !important;
+}
+
+
 /* Categories add page */
 .categoriesAdd_page_container {
   /* width: 88%; */
@@ -1918,6 +1934,22 @@ button:not(:disabled),
   }
 }
 
+.products_page_container-form {
+  position: absolute;
+}
+
+.products_page_container-btn_s {
+  left: 77%;
+  width: 4% !important;
+  padding: initial;
+  position: fixed;
+  background: none;
+  border: none;
+  color: #423f3f;
+  font-size: 15px !important;
+}
+
+
 /* Product add */
 .Product_Add_page-background {
   margin-bottom: -18%;
@@ -2041,6 +2073,22 @@ button:not(:disabled),
   font-size: 15px;
   text-align: center;
 }
+
+.user_page_container-form {
+  position: absolute;
+}
+
+.user_page_container-btn_s {
+  left: 77%;
+  width: 4% !important;
+  padding: initial;
+  position: fixed;
+  background: none;
+  border: none;
+  color: #423f3f;
+  font-size: 15px !important;
+}
+
 
 
 /* User add page */
@@ -2242,4 +2290,39 @@ button:not(:disabled),
     height: 150px;
     opacity: 0;
   }
+}
+
+/* Bills Page */
+.bills_page_container {
+  background: rgb(0 0 0 / 76%);
+  margin-top: 15%;
+  font-size: 16px;
+  color: white;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+  backdrop-filter: blur(6px);
+  height: 100% !important;
+  border-radius: 19px;
+}
+
+.bills_page_container-form {
+  padding-top: 3%;
+  padding-bottom: 1%;
+  margin-right: 81%;
+}
+
+.bills_page_container-btn_s {
+  left: -21%;
+  /* padding: initial; */
+  background: none;
+  border: none;
+  color: #423f3f;
+  font-size: 15px !important;
+  cursor: pointer;
+  width: 13% !important;
+  height: 40px;
+  color: #423f3d;
+  z-index: 2;
+  position: relative;
+  margin-top: -15%;
+  margin-right: 35%;
 }

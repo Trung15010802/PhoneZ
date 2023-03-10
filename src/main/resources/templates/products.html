@@ -62,11 +62,12 @@
     <!-- Header -->
     <div class="container product_container">
         <div class="categories_page_container-input">
-            <form class="row no-gutters justify-content-center" action="/products/search" method="get">
+            <form class="row no-gutters justify-content-center products_page_container-form" action="/products/search"
+                method="get">
 
                 <input type="text" placeholder="Search" class="input_categories" name="keyword" th:value="${keyword}">
 
-                <button class="fas fa-search" name="query" type="submit"></button>
+                <button class="fas fa-search products_page_container-btn_s" name="query" type="submit"></button>
 
             </form>
 
@@ -90,7 +91,7 @@
 
                 <tr th:each="product, iStat : ${products}">
                     <th scope="row" th:text="${iStat.index + 1}">1</th>
-                    <td th:text="${product.name}">Larry</td>
+                    <td><a href="" th:href="@{/admin/viewproduct/{id}(id=${product.id})}" th:text="${product.name}"></a>
                     <td th:text="${product.category.name}">Larry</td>
                     <td><img src="" height="100px" width="100px" th:src="@{${product.imageName}}"></td>
                     <td th:text="${product.quantity}">Larry</td>
