@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BillDTO {
     private long id;
-    // private List<String> product_name;
+
     private List<String> productName;
     private long userId;
     private String firstName;
