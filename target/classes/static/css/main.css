@@ -48,7 +48,7 @@
   font-size: 1.2rem;
 }
 
-
+.navbar-info-phonenumber {}
 
 .navbar-navigation__list {
   height: 100%;
@@ -141,15 +141,15 @@
 }
 
 
-
+.background-slider {}
 
 .background-slider-info {
   padding: 0;
 }
 
+.background-slider-info__list {}
 
-
-
+.slider-item {}
 
 .background-slider_image {
   width: 100%;
@@ -168,6 +168,7 @@
   left: 40px;
 }
 
+.slider-product {}
 
 .product-cover {
   margin: 0;
@@ -1044,9 +1045,11 @@ main .cart_page-container {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
+  width: 71%;
 }
 
 main .cart_page_body {
+  font-size: 15px;
   border-radius: 10px;
   background-color: #fbfbff;
 }
@@ -1235,6 +1238,36 @@ main .card {
 
 .cart_page_align-items-center {
   font-size: 15px;
+}
+
+.categories_page_container-input {
+  position: absolute;
+  margin-left: 76%;
+  margin-top: 2%;
+}
+
+.input_categories {
+  width: 150px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 9999px;
+  border: solid 1px #626161;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+
+.categories_page_container-input i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+  color: #555555;
+  font-size: 20px;
+}
+
+.input_categories:focus {
+  opacity: 1;
+  width: 250px;
 }
 
 /*View Product */
@@ -1901,6 +1934,7 @@ button:not(:disabled),
   background: rgb(0 0 0 / 72%);
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
   height: 100%;
+  width: 64% !important;
   margin-top: 14%;
   width: 50%;
 }
@@ -1909,7 +1943,9 @@ button:not(:disabled),
   background: rgb(0 0 0 / 79%);
   border-radius: 26px;
   backdrop-filter: blur(6px);
-  width: 108%;
+  width: 107%;
+  padding: 0;
+  padding-bottom: 11% !important;
   padding: 0;
   box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
 }
@@ -1930,13 +1966,26 @@ button:not(:disabled),
 .form-group_Product_Add_con1 {
   margin-right: 16%;
   text-align: initial;
-  margin-right: 16%;
   text-align: initial;
-  width: 76% !important;
+  width: 80% !important;
   padding-bottom: 23px;
   padding-left: 33px !important;
   padding-top: 17px;
 }
+
+.form-group_Product_Add input {
+  width: 120%;
+  /* height: 265% !important; */
+  padding-bottom: 5%;
+  border-radius: 15px;
+  padding-top: 5%;
+  text-align: left;
+}
+
+.form-group_Product_Add label {
+  font-size: 16px;
+}
+
 
 .form-group_Product_Add textarea {
   border-radius: 15px;
@@ -1996,9 +2045,11 @@ button:not(:disabled),
 
 /* User add page */
 .userAdd_container {
+  font-size: 20px;
   margin-top: 13%;
-  margin-left: 31%;
-  width: 36%;
+  margin-left: 27%;
+  width: 49%;
+  padding-bottom: 5%;
   height: 100%;
   border-radius: 17px;
   background: rgb(0, 0, 0, 56%);
@@ -2016,13 +2067,23 @@ button:not(:disabled),
 
 .useradd_form-group input {
   width: 169%;
+  font-size: 13px;
   border-radius: 10px;
+  padding-bottom: 9%;
+  padding-top: 9%;
+  margin-left: 70%;
+}
+
+.useradd_form-group label {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .useradd_btn {
-  margin-top: 10%;
+  margin-top: 24%;
   width: 151% !important;
   border-radius: 17px !important;
+  margin-left: 76%;
 }
 
 

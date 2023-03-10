@@ -61,6 +61,10 @@
     </div>
     <!-- Header -->
     <div class="container product_container">
+        <div class="categories_page_container-input">
+            <input type="text" placeholder="Search" name="text" class="input_categories">
+            <i class="fas fa-search"></i>
+        </div>
 
         <a th:href="@{/admin/products/add}" style="margin: 20px 0"
             class="btn btn-primary product_page-btn_add_Product"><span>Add Product</span> </a>
@@ -80,7 +84,7 @@
 
                 <tr th:each="product, iStat : ${products}">
                     <th scope="row" th:text="${iStat.index + 1}">1</th>
-                    <td><a href="" th:href="@{/admin/viewproduct/{id}(id=${product.id})}" th:text="${product.name}"></a>
+                    <td th:text="${product.name}">Larry</td>
                     <td th:text="${product.category.name}">Larry</td>
                     <td><img src="" height="100px" width="100px" th:src="@{${product.imageName}}"></td>
                     <td th:text="${product.quantity}">Larry</td>
