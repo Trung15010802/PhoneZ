@@ -24,7 +24,7 @@
 
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1 class="fw-light text-white m-0">CATEGORIES, ADMIN</h1>
-                <a href="https://manuel.pinto.dev" class="text-decoration-none">
+                <a href="/" class="text-decoration-none">
                     <h5 class="fw-light text-white m-0">— Bán điện thoại uy tín —</h5>
                 </a>
             </div>
@@ -62,8 +62,13 @@
     </div>
     <div class="container categories_page_container">
         <div class="categories_page_container-input">
-            <input type="text" placeholder="Search" name="text" class="input_categories">
-            <i class="fas fa-search"></i>
+
+            <form class="row no-gutters justify-content-center" action="/categories/search" method="get">
+                <input type="text" placeholder="Search" class="input_categories" name="keyword" th:value="${keyword}">
+                <button class="fas fa-search" name="query" type="submit"></button>
+
+
+            </form>
         </div>
 
         <a th:href="@{/admin/categories/add}" style="margin: 20px 0"
