@@ -48,7 +48,6 @@
   font-size: 1.2rem;
 }
 
-.navbar-info-phonenumber {}
 
 .navbar-navigation__list {
   height: 100%;
@@ -141,15 +140,13 @@
 }
 
 
-.background-slider {}
 
 .background-slider-info {
   padding: 0;
 }
 
-.background-slider-info__list {}
 
-.slider-item {}
+
 
 .background-slider_image {
   width: 100%;
@@ -168,7 +165,6 @@
   left: 40px;
 }
 
-.slider-product {}
 
 .product-cover {
   margin: 0;
@@ -1484,9 +1480,7 @@ main .card {
 }
 
 
-#Menu_bar_Admin_Home_Background {
-  /* background: #6087B8; */
-}
+
 
 #Menu_bar_Admin_Home_Background a {
   padding: 10px 50px;

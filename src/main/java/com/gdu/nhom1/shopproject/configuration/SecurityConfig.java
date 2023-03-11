@@ -11,8 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.gdu.nhom1.shopproject.controllers.CartController;
 import com.gdu.nhom1.shopproject.services.UserService;
 
 @Configuration
@@ -49,8 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessHandler(logoutSuccessHandler())
                 .permitAll();
+    }
+
+    private LogoutSuccessHandler logoutSuccessHandler() {
+        return (request, response, authentication) -> {
+            CartController.clearCart();
+            System.out.println("Logout thành công");
+            response.sendRedirect("/login");
+        };
     }
 
     @Bean

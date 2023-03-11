@@ -34,7 +34,11 @@ public class CartController {
     @Autowired
     UserService userService;
 
-    private List<Product> cart;
+    private static List<Product> cart;
+
+    public static void clearCart() {
+        cart = null;
+    }
 
     @PostMapping("/addToCart")
     public String addToCart(@RequestParam("productId") int productId,
