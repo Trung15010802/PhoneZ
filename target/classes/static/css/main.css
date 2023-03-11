@@ -1401,10 +1401,10 @@ main .card {
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
   text-transform: uppercase;
-  width: 100% ;
+  width: 100%;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: rgb(8, 161, 181);
 
 }
@@ -2363,6 +2363,7 @@ main .card {
 }
 
 .bills_page_table a {
+  display: inline;
   color: white;
 }
 
