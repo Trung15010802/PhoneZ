@@ -44,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
-
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
@@ -72,7 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/resources/**",
                 "/static/**",
                 "/images/**",
-                "/productImages/**",
                 "/css/**",
                 "/js/**");
     }// bo qua authen cac package nay
