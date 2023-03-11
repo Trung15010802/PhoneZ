@@ -95,9 +95,9 @@
                     <td  class="product_page_item" th:text="${product.category.name}">Larry</td>
                     <td><img src="" height="100px" width="100px" th:src="@{${product.imageName}}"></td>
                     <td  class="product_page_item" th:text="${product.quantity}">Larry</td>
-                    <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}"
+                    <td class="product_page_item"><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}"
                             class="btn btn-danger categories_page-btn_danger"><i class="fas fa-trash"></i></a></td>
-                    <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}"
+                    <td class="product_page_item"><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}"
                             class="btn btn-warning categories_page-btn_warning"><i class="fas fa-edit"></i></a></td>
 
                 </tr>

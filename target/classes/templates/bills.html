@@ -6,8 +6,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://kit.fontawesome.com/dd7e8a6c0f.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -87,7 +86,7 @@
 
                 <tr th:each="bill, iStat : ${bills}">
                     <th class="bills_page_item" scope="row" th:text="${iStat.index + 1}">1</th>
-                    <td>
+                    <td class="bills_page_item">
                         <a class="nav-link" th:href="@{/admin/bills/viewbill/{id}(id=${bill.id})}" href="#">
                             <span th:text="${bill.firstName} + ' ' + ${bill.lastName}"></span>
                         </a>
@@ -96,7 +95,7 @@
                     <td class="bills_page_item" th:text="${bill.email}">Larry</td>
                     <td class="bills_page_item" th:text="${bill.phoneNumber}">Larry</td>
                     <td class="bills_page_item" th:text="${bill.addInformation}">Larry</td>
-                    <td>
+                    <td class="bills_page_item">
                         <a class="nav-link" th:href="@{/admin/bills/viewbill/{id}(id=${bill.id})}" href="#">
                             <span th:each="product : ${bill.productName}" th:text="${product} + '; '"></span>
                         </a>
