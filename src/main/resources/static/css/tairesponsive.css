@@ -142,7 +142,15 @@
     }
 
     .header-title__list {
-        width: 409px;
+        margin-left: 11%;
+    }
+
+    .header-tile__item {
+        font-size: 1.8rem;
+    }
+
+    .navbar-navigation__content {
+        font-size: 1.6rem;
     }
 
     /* shop page */
