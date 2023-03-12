@@ -35,7 +35,8 @@ public class HomeController {
         String email = "";
         try {
             Object principal = authentication.getPrincipal();
-            if(authentication != null){}
+            if (authentication != null) {
+            }
             if (principal instanceof UserDetails) {
                 email = ((UserDetails) principal).getUsername();
             } else {
@@ -48,9 +49,12 @@ public class HomeController {
             session.setAttribute("email", user.getEmail());
             session.setAttribute("userId", user.getId());
         } catch (Exception e) {
-            System.out.println(e.toString());
+            
         }
-    
+
+        model.addAttribute("products", productService.getAllProduct());
+        model.addAttribute("categories", categoryService.getAllCategory());
+
         return "index";
     }
 

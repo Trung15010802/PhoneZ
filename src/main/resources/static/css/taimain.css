@@ -332,6 +332,9 @@ body {
 .product-slider__name {
     font-size: 1.8rem;
     color: var(--white-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-slider__price {

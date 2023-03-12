@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   
+    <link rel="stylesheet" href="/css/bootstrap.css">
 
     <!-- Link font and icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -49,26 +49,25 @@
                         </div>
                         <div class="navbar-navigation">
                             <ul class="navbar-navigation__list">
-                                <a th:href="@{/login}" class="navbar-navigation__link">
+                                <a th:href="@{/login}" class="navbar-navigation__link" sec:authorize="isAnonymous()">
                                     <li class="navbar-navigation__item">
                                         <i class="fa-solid fa-user navbar-navigation__icon"></i>
-                                        <span class="navbar-navigation__content" sec:authorize="isAnonymous()">Create
+                                        <span class="navbar-navigation__content">Create
                                             your
                                             Acount</span>
                                     </li>
                                 </a>
-                                <a th:href="@{/login}" class="navbar-navigation__link">
+                                <a th:href="@{/login}" class="navbar-navigation__link" sec:authorize="isAnonymous()">
                                     <li class="navbar-navigation__item">
                                         <i class="fa-solid fa-key navbar-navigation__icon"></i>
-                                        <span class="navbar-navigation__content"
-                                            sec:authorize="isAnonymous()">Login</span>
+                                        <span class="navbar-navigation__content">Login</span>
                                     </li>
                                 </a>
-                                <a class="navbar-navigation__link">
+                                <a th:href="@{/bills/history/{id}(id=${#session.getAttribute('userId')})}"
+                                    class="navbar-navigation__link" sec:authorize="isAuthenticated()">
                                     <li class="navbar-navigation__item">
                                         <i class="fa-solid fa-list-check navbar-navigation__icon"></i>
-                                        <span class="navbar-navigation__content" sec:authorize="isAuthenticated()"
-                                            th:href="@{/logout}">History</span>
+                                        <span class="navbar-navigation__content">History</span>
                                     </li>
                                 </a>
                                 <a th:href="@{/logout}" class="navbar-navigation__link">
@@ -115,12 +114,13 @@
                             </div>
                         </div>
                         <div class="col-4 header-search__cover">
-                            <div class="header-search">
-                                <input type="text" class="header-search__input" placeholder="Search here">
-                                <a class="header-search__link">
-                                    <i class="header-search__icon fa-solid fa-magnifying-glass"></i>
+                            <form class="header-search" action="/shop/search" method="get">
+                                <input class="header-search__input" type="text" name="keyword" th:value="${keyword}"
+                                    placeholder="Search here">
+                                <a class="header-search__link" name="query" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -239,128 +239,22 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row product-slider__cover">
-                            <div class="col-lg-3">
+                            <div th:each="product : ${products}" class="col-lg-3">
                                 <div class="product-slider__item shine-box ">
                                     <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
+                                        <div class="product-slider__image" style="width: 100%; height: 300px;">
+                                            <a th:href="@{/shop/viewproduct/{id}(id=${product.id})}" class="">
+                                                <img class="" height="300px" width="100%"
+                                                    th:src="@{${product.imageName}}" th:alt="${product.name}"
+                                                    src="/images/product-item.png">
+                                            </a>
                                         </div>
                                         <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
+                                            <h4 class="product-slider__name" th:text="${product.name}">Iphone 14 pro max
+                                            </h4>
+                                            <span class="product-slider__price"
+                                                th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">24.990.000
+                                                <span class="product-slider__currence">VNĐ</span></span>
                                         </div>
                                     </a>
                                 </div>
@@ -374,72 +268,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-sm-4 advertising__column">
+                        <div class="col-sm-4 advertising__column" th:each="category: ${categories}"
+                            th:switch="${category.name}">
                             <div class="advertising__image"
                                 style="background-image: url(/images/advertise1.png); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        PHOTO
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 advertising__column">
-                            <div class="advertising__image"
-                                style="background-image: url(/images/advertise3.jpg); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        CHATTING
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 advertising__column">
-                            <div class="advertising__image"
-                                style="background-image: url(/images/advertise2.png); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        GAMING
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 advertising__column">
-                            <div class="advertising__image"
-                                style="background-image: url(/images/advertise5.png); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        MOVIE
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 advertising__column">
-                            <div class="advertising__image"
-                                style="background-image: url(/images/advertise4.png); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        MUSIC
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 advertising__column">
-                            <div class="advertising__image"
-                                style="background-image: url(/images/advertise6.png); width: 100%; height: 250px;">
-                                <div class="advertising__cicle">
-                                    <span class="advertising__content">
-                                        CREATOR
-                                    </span>
-
-                                </div>
+                                <a th:href="@{/shop/category/{id}(id=${category.id})}" class="advertising__cicle">
+                                    <span class="advertising__content" th:text="${category.name}"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -460,128 +295,22 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row product-slider__cover">
-                            <div class="col-lg-3">
+                            <div th:each="product : ${products}" class="col-lg-3">
                                 <div class="product-slider__item shine-box ">
                                     <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
+                                        <div class="product-slider__image" style="width: 100%; height: 300px;">
+                                            <a th:href="@{/shop/viewproduct/{id}(id=${product.id})}" class="">
+                                                <img class="" height="300px" width="100%"
+                                                    th:src="@{${product.imageName}}" th:alt="${product.name}"
+                                                    src="/images/product-item.png">
+                                            </a>
                                         </div>
                                         <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="product-slider__item shine-box ">
-                                    <a th:href="@{/shop}" class="product-slider__link">
-                                        <div class="product-slider__image"
-                                            style="background-image: url(/images/product-item.png); width: 100%; height: 300px;">
-                                        </div>
-                                        <div class="product-slider__content">
-                                            <h4 class="product-slider__name">Iphone 14 pro max</h4>
-                                            <span class="product-slider__price">24.990.000 <span
-                                                    class="product-slider__currence">VNĐ</span></span>
+                                            <h4 class="product-slider__name" th:text="${product.name}">Iphone 14 pro max
+                                            </h4>
+                                            <span class="product-slider__price"
+                                                th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">24.990.000
+                                                <span class="product-slider__currence">VNĐ</span></span>
                                         </div>
                                     </a>
                                 </div>
