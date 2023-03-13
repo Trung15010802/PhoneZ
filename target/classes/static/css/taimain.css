@@ -22,11 +22,10 @@ body {
     position: fixed;
     z-index: 95;
     transition: top 1.5s;
+    height: fit-content;
 }
 
-.header-width__custome {
 
-}
 
 /* Navbar -----------------------------------------------------------------------------------------------*/
 .navbar {
