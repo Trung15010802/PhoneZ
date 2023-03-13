@@ -49,7 +49,7 @@ public class HomeController {
             session.setAttribute("email", user.getEmail());
             session.setAttribute("userId", user.getId());
         } catch (Exception e) {
-            
+
         }
 
         model.addAttribute("products", productService.getAllProduct());
@@ -85,6 +85,7 @@ public class HomeController {
 
     @GetMapping("/shop/search")
     public String search(@RequestParam String keyword, Model model) {
+        keyword = keyword.trim();
         List<Product> results = productService.search(keyword);
         model.addAttribute("categories", categoryService.getAllCategory());
         model.addAttribute("products", results);

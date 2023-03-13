@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="icon" href="/images/logo-header.png">
+    <link rel="icon" href="/images/logo-header.png">
     <!-- Link CSS file -->
     <link rel="stylesheet" href="/css/taimain.css">
     <link rel="stylesheet" href="/css/taibase.css">
@@ -50,24 +50,25 @@
                     </div>
                     <div class="navbar-navigation">
                         <ul class="navbar-navigation__list">
-                            <a th:href="@{/login}" class="navbar-navigation__link">
+                            <a th:href="@{/login}" class="navbar-navigation__link" sec:authorize="isAnonymous()">
                                 <li class="navbar-navigation__item">
                                     <i class="fa-solid fa-user navbar-navigation__icon"></i>
-                                    <span class="navbar-navigation__content" sec:authorize="isAnonymous()">Create your
+                                    <span class="navbar-navigation__content">Create your
                                         Acount</span>
                                 </li>
                             </a>
-                            <a th:href="@{/login}" class="navbar-navigation__link">
+                            <a th:href="@{/login}" class="navbar-navigation__link" sec:authorize="isAnonymous()">
                                 <li class="navbar-navigation__item">
                                     <i class="fa-solid fa-key navbar-navigation__icon"></i>
-                                    <span class="navbar-navigation__content" sec:authorize="isAnonymous()">Login</span>
+                                    <span class="navbar-navigation__content">Login</span>
                                 </li>
                             </a>
-                            <a class="navbar-navigation__link">
+
+                            <a th:href="@{/bills/history/{id}(id=${#session.getAttribute('userId')})}"
+                                class="navbar-navigation__link" sec:authorize="isAuthenticated()">
                                 <li class="navbar-navigation__item">
                                     <i class="fa-solid fa-list-check navbar-navigation__icon"></i>
-                                    <span class="navbar-navigation__content" sec:authorize="isAuthenticated()"
-                                        th:href="@{/logout}">History</span>
+                                    <span class="navbar-navigation__content">History</span>
                                 </li>
                             </a>
                             <a th:href="@{/logout}" class="navbar-navigation__link">
@@ -113,14 +114,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-4 header-search__cover">
-                        <form class="header-search" action="/shop/search" method="get">
-                            <input type="text" class="header-search__input" placeholder="Search here" name="keyword" th:value="${keyword}">
-                            <button type="submit" class="header-search__link">
-                                <i class="header-search__icon fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </form>
-                    </div>
+
                 </div>
             </div>
         </nav>
@@ -271,7 +265,7 @@
                             </div>
                         </div>
                     </div>
-               
+
                 </div>
             </div>
         </div>

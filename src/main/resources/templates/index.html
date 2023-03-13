@@ -71,11 +71,11 @@
                                         <span class="navbar-navigation__content">History</span>
                                     </li>
                                 </a>
-                                <a th:href="@{/logout}" class="navbar-navigation__link">
+                                <a th:href="@{/logout}" class="navbar-navigation__link"
+                                    sec:authorize="isAuthenticated()">
                                     <li class="navbar-navigation__item">
                                         <i class="fa-solid fa-right-from-bracket navbar-navigation__icon"></i>
-                                        <span class="navbar-navigation__content"
-                                            sec:authorize="isAuthenticated()">Logout</span>
+                                        <span class="navbar-navigation__content">Logout</span>
                                     </li>
                                 </a>
                                 <a th:href="@{/cart}" class="navbar-navigation__link">
@@ -264,17 +264,93 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid advertising">
+        <!--<div class="container-fluid advertising">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-sm-4 advertising__column" th:each="category: ${categories}"
                             th:switch="${category.name}">
                             <div class="advertising__image"
-                                style="background-image: url(/images/advertise1.png); width: 100%; height: 250px;">
+                                th:style="'background-image: url(/images/' +${category.name}+'.jpg); width: 100%; height: 250px;'">
                                 <a th:href="@{/shop/category/{id}(id=${category.id})}" class="advertising__cicle">
                                     <span class="advertising__content" th:text="${category.name}"></span>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="container-fluid advertising">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise1.png); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        PHOTO
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise3.jpg); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        CHATTING
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise2.png); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        GAMING
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise5.png); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        MOVIE
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise4.png); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        MUSIC
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 advertising__column">
+                            <div class="advertising__image"
+                                style="background-image: url(/images/advertise6.png); width: 100%; height: 250px;">
+                                <div class="advertising__cicle">
+                                    <span class="advertising__content">
+                                        CREATOR
+                                    </span>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -286,7 +362,7 @@
                 <div class="col-12">
                     <div class="product-slider__heading">
                         <h1 class="product-slider__heading-content">
-                            The Newest Products
+                            The Category
                         </h1>
                     </div>
                 </div>
@@ -295,22 +371,18 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row product-slider__cover">
-                            <div th:each="product : ${products}" class="col-lg-3">
+                            <div th:each="category : ${categories}" class="col-lg-3">
                                 <div class="product-slider__item shine-box ">
                                     <a th:href="@{/shop}" class="product-slider__link">
                                         <div class="product-slider__image" style="width: 100%; height: 300px;">
-                                            <a th:href="@{/shop/viewproduct/{id}(id=${product.id})}" class="">
+                                            <a th:href="@{/shop/category/{id}(id=${category.id})}" class="">
                                                 <img class="" height="300px" width="100%"
-                                                    th:src="@{${product.imageName}}" th:alt="${product.name}"
-                                                    src="/images/product-item.png">
+                                                    th:src="@{'/images/' + ${category.name} + '.jpg'}"
+                                                    onerror="this.src='/images/product1.jpg'" th:alt="${category.name}">
                                             </a>
                                         </div>
                                         <div class="product-slider__content">
-                                            <h4 class="product-slider__name" th:text="${product.name}">Iphone 14 pro max
-                                            </h4>
-                                            <span class="product-slider__price"
-                                                th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">24.990.000
-                                                <span class="product-slider__currence">VNĐ</span></span>
+                                            <h4 class="product-slider__name" th:text="${category.name}"></h4>
                                         </div>
                                     </a>
                                 </div>
@@ -393,11 +465,9 @@
                     <h4 class="footer-heading">Category</h4>
                     <div class="footer_content-cover">
                         <ul class="footer-list">
-                            <li class="footer-item">Sam sung</li>
-                            <li class="footer-item">Iphone</li>
-                            <li class="footer-item">Xiaomi</li>
-                            <li class="footer-item">Nokia</li>
-                            <li class="footer-item">Oppo</li>
+                            <li class="footer-item" th:each="category: ${categories}">
+                                <a th:href="@{/shop/category/{id}(id=${category.id})}" th:text="${category.name}"></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
