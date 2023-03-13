@@ -651,7 +651,8 @@ body {
 }
 
 .shop-categori-cover {
-    position: fixed;
+    position: sticky;
+    top: 90px;
 }
 
 .shop-categori__heading {
