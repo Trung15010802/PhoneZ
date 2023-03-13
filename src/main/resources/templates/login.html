@@ -65,20 +65,7 @@
                                     <span class="navbar-navigation__content" sec:authorize="isAnonymous()">Login</span>
                                 </li>
                             </a>
-                            <a class="navbar-navigation__link">
-                                <li class="navbar-navigation__item">
-                                    <i class="fa-solid fa-list-check navbar-navigation__icon"></i>
-                                    <span class="navbar-navigation__content" sec:authorize="isAuthenticated()"
-                                        th:href="@{/logout}">History</span>
-                                </li>
-                            </a>
-                            <a th:href="@{/logout}" class="navbar-navigation__link">
-                                <li class="navbar-navigation__item">
-                                    <i class="fa-solid fa-right-from-bracket navbar-navigation__icon"></i>
-                                    <span class="navbar-navigation__content"
-                                        sec:authorize="isAuthenticated()">Logout</span>
-                                </li>
-                            </a>
+
 
                         </ul>
                     </div>
@@ -98,7 +85,7 @@
                                 <a class="header-title__link" th:href="@{/shop}">
                                     <li class="header-tile__item">Products</li>
                                 </a>
-                                <a href="#slider2" class="header-title__link">
+                                <a href="/#slider2" class="header-title__link">
                                     <li class="header-tile__item">Newest</li>
                                 </a>
                                 <a href="#aboutus" class="header-title__link">
@@ -108,11 +95,12 @@
                         </div>
                     </div>
                     <div class="col-4 header-search__cover">
-                        <form class="header-search">
-                            <input type="text" class="header-search__input" placeholder="Search here">
-                            <a class="header-search__link">
+                        <form class="header-search" action="/shop/search" method="get">
+                            <input type="text" class="header-search__input" placeholder="Search here" name="keyword"
+                                th:value="${keyword}">
+                            <button type="submit" class="header-search__link">
                                 <i class="header-search__icon fa-solid fa-magnifying-glass"></i>
-                            </a>
+                            </button>
                         </form>
                     </div>
                 </div>

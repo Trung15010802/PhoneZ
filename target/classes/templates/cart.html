@@ -108,11 +108,12 @@
                         </div>
                     </div>
                     <div class="col-4 header-search__cover">
-                        <form class="header-search">
-                            <input type="text" class="header-search__input" placeholder="Search here">
-                            <a class="header-search__link">
+                        <form class="header-search" action="/shop/search" method="get">
+                            <input type="text" class="header-search__input" placeholder="Search here" name="keyword"
+                                th:value="${keyword}">
+                            <button type="submit" class="header-search__link">
                                 <i class="header-search__icon fa-solid fa-magnifying-glass"></i>
-                            </a>
+                            </button>
                         </form>
                     </div>
                 </div>

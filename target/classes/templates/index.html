@@ -116,15 +116,14 @@
                         </div>
                         <div class="col-4 header-search__cover">
                             <form class="header-search" action="/shop/search" method="get">
-                                <input class="header-search__input" type="text" name="keyword" th:value="${keyword}"
-                                    placeholder="Search here">
-                                <a class="header-search__link" name="query" type="submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </a>
+                                <input type="text" class="header-search__input" placeholder="Search here" name="keyword"
+                                    th:value="${keyword}">
+                                <button type="submit" class="header-search__link">
+                                    <i class="header-search__icon fa-solid fa-magnifying-glass"></i>
+                                </button>
                             </form>
                         </div>
                     </div>
-                </div>
             </nav>
             <nav class="row navbar-mobile">
                 <div class="col-8">
