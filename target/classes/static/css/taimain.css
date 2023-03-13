@@ -307,7 +307,7 @@ body {
     font-weight: 700;
 }
 
-.product-slider__list {}
+
 
 .product-slider__item {
     background-image: linear-gradient(-45deg, #24273c, #1d2f65, #425fbc, #0a759c);
@@ -322,10 +322,13 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-size: cover;
+    margin-top: 8px;
 }
 
 .product-slider__content {
     text-align: center;
+    padding-top: 14px;
 }
 
 .product-slider__name {
