@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
         integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="icon" href="/images/logo-header.png">
+    <link rel="icon" href="/images/logo-header.png">
     <link rel="stylesheet" href="/css/login_page.css">
     <link rel="stylesheet" href="/css/taibase.css">
     <link rel="stylesheet" href="/css/tairesponsive.css">
@@ -79,15 +79,7 @@
                                         sec:authorize="isAuthenticated()">Logout</span>
                                 </li>
                             </a>
-                            <!-- <a th:href="@{/cart}" class="navbar-navigation__link">
-                                <li class="navbar-navigation__item">
-                                    <i class="fa-solid fa-cart-shopping navbar-navigation__icon">
-                                        <span class="navbar-navigation__number"
-                                            th:text="${#session.getAttribute('cartCount')}">0</span>
-                                    </i>
-                                    <span class="navbar-navigation__content">Cart</span>
-                                </li>
-                            </a> -->
+
                         </ul>
                     </div>
                 </div>
@@ -201,7 +193,6 @@
                             </i>
                         </li>
                     </a>
-                    <!-- <span class="navbar-navigation__number" th:text="${#session.getAttribute('cartCount')}">0</span> -->
                 </ul>
             </div>
         </nav>
