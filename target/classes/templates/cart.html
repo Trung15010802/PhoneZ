@@ -43,7 +43,13 @@
                     </div>
                     <div class="navbar-navigation">
                         <ul class="navbar-navigation__list">
-
+                            <a class="navbar-navigation__link" sec:authorize="isAuthenticated()">
+                                <li class="navbar-navigation__item">
+                                    <i class="fa-solid fa-user navbar-navigation__icon"></i>
+                                    <span class="navbar-navigation__content"
+                                        th:text="${#session.getAttribute('email')}">emal@gmailc.om</span>
+                                </li>
+                            </a>
 
                             <a th:href="@{/bills/history/{id}(id=${#session.getAttribute('userId')})}"
                                 class="navbar-navigation__link" sec:authorize="isAuthenticated()">
