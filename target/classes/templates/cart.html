@@ -60,7 +60,7 @@
                                 </li>
                             </a>
                             <a th:href="@{/cart}" class="navbar-navigation__link">
-                                <li class="navbar-navigation__item">
+                                <li class="navbar-navigation__item header-title__link--color">
                                     <i class="fa-solid fa-cart-shopping navbar-navigation__icon">
                                         <span class="navbar-navigation__number"
                                             th:text="${#session.getAttribute('cartCount')}">0</span>
@@ -80,7 +80,7 @@
                         <div class="header-title">
                             <ul class="header-title__list">
                                 <a class="header-title__link" th:href="@{/}">
-                                    <li class="header-tile__item header-title__link--color">Home
+                                    <li class="header-tile__item">Home
                                     </li>
                                 </a>
                                 <a class="header-title__link" th:href="@{/shop}">
@@ -128,7 +128,7 @@
                 </label>
                 <ul class="navbar-mobile__list">
                     <a th:href="@{/}" class="navbar-mobile__link">
-                        <li class="navbar-mobile__item header-title__link--color">
+                        <li class="navbar-mobile__item">
                             <span class="navbar-mobile__content">
                                 Home
                             </span>
@@ -176,7 +176,7 @@
                         </li>
                     </a>
                     <a class="navbar-mobile__link">
-                        <li class="navbar-mobile__item">
+                        <li class="navbar-mobile__item header-title__link--color">
                             <span class="navbar-mobile__content" th:href="@{/cart}">Cart</span>
                             <i class="fa-solid fa-cart-shopping navbar-mobile__icon">
                             </i>

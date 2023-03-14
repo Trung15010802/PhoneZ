@@ -84,7 +84,7 @@ body {
 
 .navbar-info-content {
     margin-bottom: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .navbar-info-phonenumber {
@@ -186,7 +186,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     margin: 10px 0px 10px 10%;
-    color: #f2f2f2 !important;
+    color: #f2f2f2;
 }
 
 .header-title__link:hover {
@@ -663,7 +663,7 @@ body {
 }
 
 .shop-list__heading {
-    width: 130%;
+    width: 100%;
     font-size: 2.2rem;
     font-weight: bold;
     border: 0;
@@ -686,6 +686,7 @@ body {
     border-radius: 0 !important;
     color: #20222e;
     border: 0;
+    width: 70%;
     border-bottom: 1.5px solid #425fbc;
     background: transparent;
 }
