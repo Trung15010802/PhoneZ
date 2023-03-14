@@ -40,7 +40,9 @@ public class SecurityConfig {
                 .accessDeniedPage("/403")
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login") // Khi sử dụng phương thức post để đăng nhập, các thông tin đăng nhập (như
+                                     // tên đăng nhập và mật khẩu) sẽ được gửi đến đường dẫn "/login" được định nghĩa
+                                     // trong phương thức formLogin() của lớp SecurityConfig.
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
                 .defaultSuccessUrl("/")
                 .permitAll()
@@ -72,7 +74,8 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-        return (web) -> web.ignoring().antMatchers("/resources/**", "/static/**", "/images/**", "/css/**", "/js/**","/error");
-    }//Bỏ xác minh các package đường dẫn này
+        return (web) -> web.ignoring().antMatchers("/resources/**", "/static/**", "/images/**", "/css/**", "/js/**",
+                "/error");
+    }// Bỏ xác minh các package đường dẫn này
 
 }
